@@ -1,0 +1,99 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    overflow: hidden; /* ป้องกันการเลื่อนหน้าจอ */
+}
+
+.arrow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 50px;
+}
+
+.slot-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.slots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 80vw; /* ให้ช่องโชว์การ์ดใหญ่ขึ้น */
+    height: 60vh; /* ปรับความสูงให้สัมพันธ์กัน */
+    border: 2px solid black;
+    padding: 10px;
+    position: relative;
+}
+
+.slot {
+    width: 14vw; /* ปรับขนาดการ์ดให้สัมพันธ์กับจอ */
+    height: 50vh;
+    margin: 0 1vw;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    flex-shrink: 0; /* ป้องกันการ์ดหด */
+}
+
+.button-container {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#result-card {
+    display: none;
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15vw;
+    height: 20vh;
+    background-color: #ddd;
+    line-height: 20vh;
+    font-size: 2rem;
+    border-radius: 5px;
+    transform: rotateY(0deg);
+    transition: transform 0.6s;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+    background-color: gold;
+}
+
+/* สไตล์ปุ่ม Start และ Stop */
+#startStopBtn {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.start {
+    background-color: green;
+}
+
+.stop {
+    background-color: red;
+}
+
+.flip-animation {
+    animation: flipCard 0.6s ease-in-out forwards;
+}
+
+@keyframes flipCard {
+    0% { transform: rotateY(0deg); }
+    50% { transform: rotateY(90deg); }
+    100% { transform: rotateY(180deg); }
+}
