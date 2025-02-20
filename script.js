@@ -7,11 +7,11 @@ const images = [
 ];
 
 const slots = document.querySelectorAll(".slot");
-const middleSlot = document.getElementById("middle-slot");
 const startStopBtn = document.getElementById("startStopBtn");
 const resetBtn = document.getElementById("resetBtn");
-const resultCard = document.getElementById("result-card");
-const cardImage = document.getElementById("cardImage");
+const popup = document.getElementById("result-popup");
+const popupImage = document.getElementById("popupImage");
+const closePopup = document.getElementById("closePopup");
 
 let interval;
 let isRunning = false;
@@ -38,13 +38,15 @@ startStopBtn.addEventListener("click", function () {
     if (!isRunning) {
         interval = setInterval(shuffleSlots, 150);
         this.textContent = "Stop";
-        this.classList.add("stop");
+        this.classList.remove("start"); // เอาสีเขียวออก
+        this.classList.add("stop"); // ใส่สีแดง
         isRunning = true;
-        resetBtn.style.display = "none"; // ซ่อนปุ่ม Reset ขณะสุ่ม
+        resetBtn.style.display = "none"; // ซ่อนปุ่ม Reset ระหว่างเล่น
     } else {
         clearInterval(interval);
         this.textContent = "Start";
-        this.classList.remove("stop");
+        this.classList.remove("stop"); // เอาสีแดงออก
+        this.classList.add("start"); // ใส่สีเขียว
         isRunning = false;
         showResult();
         resetBtn.style.display = "inline"; // แสดงปุ่ม Reset เมื่อหยุด
@@ -52,20 +54,24 @@ startStopBtn.addEventListener("click", function () {
 });
 
 // แสดงผลลัพธ์เมื่อหยุดสุ่ม
+// ซ่อน popup ตั้งแต่โหลดเว็บ
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("result-popup").style.display = "none";
+});
+
+// แสดง popup เมื่อกดปุ่มหยุด
 function showResult() {
     const middleIndex = Math.floor(images.length / 2);
     const selectedImage = images[middleIndex];
 
-    cardImage.src = selectedImage;
-    resultCard.classList.add("flipped");
+    document.getElementById("popupImage").src = selectedImage;
+    document.getElementById("result-popup").style.display = "block"; // แสดง popup
 }
 
-// รีเซ็ตการสุ่ม
-resetBtn.addEventListener("click", function () {
-    resultCard.classList.remove("flipped"); 
-    cardImage.src = "default.jpg";
-    updateSlots();
+// ปิด popup เมื่อกดปุ่ม X
+document.getElementById("closePopup").addEventListener("click", function () {
+    document.getElementById("result-popup").style.display = "none";
 });
 
-// อัพเดตสล็อตเริ่มต้น
+// อัปเดตภาพเริ่มต้น
 updateSlots();

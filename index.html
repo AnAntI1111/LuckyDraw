@@ -22,11 +22,15 @@
         <button id="startStopBtn">Start</button>
         <button id="resetBtn" style="display: none;">Reset</button>
     </div>
-    <div class="slot-machine">
-        <div class="card">
-            <img id="cardImage" src="default.jpg">
+    <!-- Popup แสดงผลลัพธ์ -->
+    <div id="result-popup" class="popup">
+        <div class="popup-content">
+            <span id="closePopup" class="close">&times;</span>
+            <h2>ท่านได้รับ</h2>
+            <img id="popupImage" src="" alt="Selected Card">
         </div>
     </div>
+
     <script src="script.js"></script>
 
 </body>
