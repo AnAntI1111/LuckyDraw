@@ -53,6 +53,17 @@ startStopBtn.addEventListener("click", function () {
     }
 });
 
+resetBtn.addEventListener("click", function () {
+    updateSlots(); // รีเซ็ตภาพกลับเป็นค่าเริ่มต้น
+    popup.style.display = "none"; // ซ่อน popup
+    startStopBtn.textContent = "Start"; // เปลี่ยนปุ่มกลับเป็น Start
+    startStopBtn.classList.remove("stop"); // เอาสีแดงออก
+    startStopBtn.classList.add("start"); // ใส่สีเขียว
+    isRunning = false;
+    this.style.display = "none"; // ซ่อนตัวเองหลังรีเซ็ต
+});
+
+
 // แสดงผลลัพธ์เมื่อหยุดสุ่ม
 // ซ่อน popup ตั้งแต่โหลดเว็บ
 document.addEventListener("DOMContentLoaded", function () {

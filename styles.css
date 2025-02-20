@@ -5,11 +5,22 @@ body {
     overflow: hidden; /* ป้องกันการเลื่อนหน้าจอ */
 }
 
-.arrow {
+.arrow-t {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 50px;
+    font-size: 40px;
+    color: #aaa;
+    top: 185px;
+}
+
+.arrow-b {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    color: #aaa;
+    bottom: 185px;
 }
 
 .slot-container {
@@ -26,26 +37,96 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    width: 80vw; /* ให้ช่องโชว์การ์ดใหญ่ขึ้น */
-    height: 60vh; /* ปรับความสูงให้สัมพันธ์กัน */
-    border: 2px solid black;
+    width: 83vw; 
+    height: 60vh; 
+    border-radius: 10px;
     padding: 10px;
     position: relative;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+
 }
 
 .slot {
-    width: 14vw; /* ปรับขนาดการ์ดให้สัมพันธ์กับจอ */
+    width: 14vw; 
     height: 50vh;
     margin: 0 1vw;
     background-size: cover;
     background-position: center;
     border-radius: 5px;
-    flex-shrink: 0; /* ป้องกันการ์ดหด */
+    flex-shrink: 0; 
 }
+
+
+/* สำหรับโทรศัพท์ (สมมุติว่า 600px ลงไป) */
+@media (max-width: 600px) {
+    /* แสดงแค่ 3 สล็อต */
+    .slots {
+        width: 83vw; 
+        height: 40vh; 
+        justify-content: space-between;
+    }
+
+    .slot {
+        width: 20vw; 
+        height: 24vh;
+    }
+
+    /* ซ่อนสล็อตที่เหลือ */
+    .slot:nth-child(n+4) {
+        display: none;
+    }
+
+    .arrow-t{
+        top: 255px;
+    }
+
+    .arrow-b{
+    bottom: 255px;
+    }
+
+    /* ปรับปุ่มให้เล็กลงในมือถือ */
+    #startStopBtn, #resetBtn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .popup img {
+        width: 200px; /* ปรับขนาดรูป */
+        height: auto;
+    }
+}
+
+/* สำหรับหน้าจอที่ใหญ่ขึ้น (ตั้งแต่ 601px ขึ้นไป) */
+@media (min-width: 601px) {
+    .slots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        width: 83vw; 
+        height: 60vh; 
+        border-radius: 10px;
+        padding: 10px;
+        position: relative;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    
+    }
+    
+    .slot {
+        width: 14vw; 
+        height: 50vh;
+        margin: 0 1vw;
+        background-size: cover;
+        background-position: center;
+        border-radius: 5px;
+        flex-shrink: 0; 
+    }
+}
+
 
 .button-container {
     position: absolute;
-    bottom: 50px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -142,4 +223,3 @@ body {
     width: 400px; /* ปรับขนาดรูป */
     height: auto;
 }
-
